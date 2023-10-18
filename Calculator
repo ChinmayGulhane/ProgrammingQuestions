@@ -36,3 +36,23 @@ public class Calc {
 
     }
 }
+
+
+DROP PROCEDURE IF EXISTS checkUser;
+
+DELIMITER $
+
+CREATE PROCEDURE checkUser()
+BEGIN
+    DECLARE emailid varchar(30);
+    
+    SET emailid = 'Jerry@gmail.com';
+
+    IF emailid = 'jerry@gmail.com' THEN
+        SELECT emailid, username, password FROM log WHERE emailid = 'jerry@gmail.com';
+    ELSE
+        SELECT 'Record unavailable' as message;
+    END IF;
+END $
+
+DELIMITER ;
